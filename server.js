@@ -4,7 +4,6 @@ const request = require('request')
 const path = require('path')
 
 const baseUrl = 'http://bryansandbox.imgix.net/'
-// const baseUrl = 'https://your_base_url_here'
 
 app.get('/', (req, res) => {
     res.status(200).send('Homepage')
