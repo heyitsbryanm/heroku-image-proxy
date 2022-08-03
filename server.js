@@ -3,7 +3,8 @@ const app = express();
 const request = require('request')
 const path = require('path')
 
-const baseUrl = 'http://bryansandbox.imgix.net/'
+// define this in your .env or your environment variables
+const baseUrl = process.env.baseUrl
 
 app.get('/', (req, res) => {
     res.status(200).send('Homepage')
