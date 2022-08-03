@@ -32,4 +32,4 @@ app.get('/*', (req, res) => {
 
 })
 
-app.listen(3000, () => console.log(`Example app listening on port ${3000} - Dir name is ${__dirname}`))
+app.listen(process.env.PORT || 3000, () => console.log(`Example app listening on port ${process.env.PORT || 3000} - Dir name is ${__dirname}`))
