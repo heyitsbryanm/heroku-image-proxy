@@ -23,14 +23,21 @@ app.get('/*', (req, res) => {
         encoding: null
     },
         (err, resp, buffer) => {
-            if (!err && resp.statusCode === 200) {
-                // if we get a 200 response
+            if (!err && resp.statusCode === 200 && resp?.headers?.["content-type"] !== "text/html") {
+                // sets the haeders. We can consider not passing any headers too.
                 res.set(resp.headers)
-                // sets the haeders;
                 res.send(resp.body);
             } else {
                 // if error. You can customise this error here.
-                res.status(resp?.statusCode).send(resp?.statusMessage)
+                console.log(resp)
+                if(resp?.headers?.["content-type"] !== "text/html" && resp.statusCode === 200) {
+                    // if we get an HTML page back with a `200` response, we likely do not want to cache that. So, we'll return an error and log it.
+                    console.error(resp)
+                    res.status(503).send('Error fetching an image.')
+                } else {
+                    // otherwise, pass the error message over
+                    res.status(resp?.statusCode).send(resp?.statusMessage)
+                }
             }
         });
 
