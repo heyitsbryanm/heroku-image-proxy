@@ -35,6 +35,14 @@ https://docs.imgix.com/setup/creating-sources/web-folder
 
 For the **Base URL** field in your Source settings, you should use your Heroku URL (`https://your-app-name.herokuapp.com/`).
 
+# FAQ's
+
+## How do I set up caching?
+
+This repo is meant to be used as an Origin proxy for the imgix service. It is a hacky solution for edge case issues where imgix cannot access an Origin, and the Origin cannot be changed to S3 or GCS.
+
+Since imgix has an error cache, requests to this proxy are expected to be limited on imgix's end. 
+
 # Todo's
 
 - [ ] Use a proxy library such as `http-proxy-middleware` instead of using `requests`
