@@ -1,6 +1,6 @@
 {
   "name": "node-image-proxy",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Simple image proxy",
   "main": "index.js",
   "scripts": {

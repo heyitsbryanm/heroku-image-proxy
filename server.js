@@ -15,7 +15,6 @@ app.get('/', (req, res) => {
 app.get('/*', (req, res) => {
 
     let url = baseUrl + req.originalUrl;
-    console.log(url)
 
     // proxy the request and send it
     request({
@@ -29,10 +28,8 @@ app.get('/*', (req, res) => {
                 res.send(resp.body);
             } else {
                 // if error. You can customise this error here.
-                console.log(resp)
-                if(resp?.headers?.["content-type"] !== "text/html" && resp.statusCode === 200) {
+                if (resp?.headers?.["content-type"] == "text/html" && resp.statusCode === 200) {
                     // if we get an HTML page back with a `200` response, we likely do not want to cache that. So, we'll return an error and log it.
-                    console.error(resp)
                     res.status(503).send('Error fetching an image.')
                 } else {
                     // otherwise, pass the error message over
